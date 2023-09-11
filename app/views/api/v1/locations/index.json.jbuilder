@@ -1,3 +1,3 @@
 json.array! @locations do |location|
-  json.extract! restaurant, :id, :name, :address
+  json.extract! location, :id, :name, :address
 end
