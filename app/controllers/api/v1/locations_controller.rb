@@ -6,6 +6,10 @@ class Api::V1::LocationsController < Api::V1::BaseController
   end
 
   def show
+    weather_service = OpenWeatherService.new(@location.name)
+    @weather_data = weather_service.fetch_weather
+    # If you also want the forecast:
+    @forecast_data = weather_service.fetch_forecast
   end
 
   def update
