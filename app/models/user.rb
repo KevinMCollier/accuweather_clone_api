@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :locations
   has_many :forecasts
+
+  acts_as_token_authenticatable
 end

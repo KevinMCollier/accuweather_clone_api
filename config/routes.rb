@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :locations, only: [ :index ]
+      resources :locations, only: %i[index show update create destroy]
     end
   end
 end
