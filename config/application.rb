@@ -16,16 +16,6 @@ module AccuweatherCloneApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-        # Add the rack-cors middleware configuration
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins 'localhost:3000' # adjust this if your React app is on a different port
-        resource '*',
-          headers: :any,
-          methods: [:get, :post, :put, :delete, :options]
-      end
-    end
-
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
