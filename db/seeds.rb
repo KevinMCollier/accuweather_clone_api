@@ -22,10 +22,10 @@ location1 = Location.create(name: "New York", latitude: 40.7128, longitude: -74.
 location2 = Location.create(name: "Los Angeles", latitude: 34.0522, longitude: -118.2437, user: user2)
 location3 = Location.create(name: "Chicago", latitude: 41.8781, longitude: -87.6298, user: user1)
 
-# Create some Forecasts associated with locations and users
-puts "The weather is..."
-Forecast.create(temperature: 21.5, condition: "Sunny", location: location1, user: user1)
-Forecast.create(temperature: 25.0, condition: "Cloudy", location: location2, user: user2)
-Forecast.create(temperature: 18.0, condition: "Rainy", location: location3, user: user1)
+# # Create some Forecasts associated with locations and users
+# puts "The weather is..."
+# Forecast.create(temperature: 21.5, condition: "Sunny", location: location1, user: user1)
+# Forecast.create(temperature: 25.0, condition: "Cloudy", location: location2, user: user2)
+# Forecast.create(temperature: 18.0, condition: "Rainy", location: location3, user: user1)
 
 puts "Seeds created successfully!"
