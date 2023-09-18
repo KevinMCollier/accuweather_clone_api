@@ -6,6 +6,6 @@ json.set! :weather do
   json.temp_max @weather_data['main']['temp_max'].round
   json.humidity @weather_data['main']['humidity']
   json.feels_like @weather_data['main']['feels_like'].round
-  json.description @weather_data['weather'][0]['description']
+  json.description @weather_data['weather'][0]['description'].capitalize
   json.icon @weather_data['weather'][0]['icon']
 end
