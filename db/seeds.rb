@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "First, let's clean up..."
-Forecast.destroy_all
+# Forecast.destroy_all
 Location.destroy_all
 User.destroy_all
 
@@ -18,10 +18,9 @@ user2 = User.create(email: "jane.doe@example.com", password: "password123", pass
 
 # Create some Locations associated with users
 puts "It's alive and their address is..."
-location1 = Location.create(name: "New York", latitude: 40.7128, longitude: -74.0060, user: user1)
-location2 = Location.create(name: "Los Angeles", latitude: 34.0522, longitude: -118.2437, user: user2)
-location3 = Location.create(name: "Chicago", latitude: 41.8781, longitude: -87.6298, user: user1)
-
+Location.create(name: "Tokyo", latitude: 35.6895, longitude: 139.6917, user: user1)
+Location.create(name: "Yokohama", latitude: 35.4437, longitude: 139.6380, user: user2)
+Location.create(name: "Sapporo", latitude: 43.0618, longitude: 141.3545, user: user1)
 # # Create some Forecasts associated with locations and users
 # puts "The weather is..."
 # Forecast.create(temperature: 21.5, condition: "Sunny", location: location1, user: user1)
