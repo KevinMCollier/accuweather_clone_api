@@ -40,6 +40,12 @@ class Api::V1::LocationsController < Api::V1::BaseController
     head :no_content
   end
 
+  def search
+    weather_service = OpenWeatherService.new(params[:query])
+    @weather_data = weather_service.fetch_weather
+    render json: @weather_data
+  end
+
   private
 
   def location_params
