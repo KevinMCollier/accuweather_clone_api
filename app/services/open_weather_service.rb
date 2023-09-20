@@ -12,6 +12,7 @@ class OpenWeatherService
     response = URI.open("#{BASE_URL}/weather?q=#{@city}&appid=#{ENV['OPEN_WEATHER_MAP_API_KEY']}&units=metric").read
     JSON.parse(response)
   rescue OpenURI::HTTPError => e
+    { error: "Error fetching data: #{e.message}"}
   end
 
   def fetch_forecast

@@ -14,6 +14,10 @@ class LocationPolicy < ApplicationPolicy
     true
   end
 
+  def search?
+    true
+  end
+
   def update?
     record.user == user
   end
