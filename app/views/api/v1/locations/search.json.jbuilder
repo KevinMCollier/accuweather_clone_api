@@ -10,4 +10,5 @@ json.set! :weather do
   json.feels_like @weather_data['main']['feels_like'].round
   json.description @weather_data['weather'][0]['description'].capitalize
   json.icon @weather_data['weather'][0]['icon']
+  json.searched_name @searched_name
 end
