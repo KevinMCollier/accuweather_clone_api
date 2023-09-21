@@ -47,6 +47,15 @@ class Api::V1::LocationsController < Api::V1::BaseController
     @searched_name = params[:query]
   end
 
+  def forecast
+    authorize Location, :search?
+    weather_service = OpenWeatherService.new(params[:query])
+    @forecast_data = weather_service.fetch_forecast
+    @searched_name = params[:query]
+    render json: @forecast_data
+    # can replace the line above if creating a forecast.json.jbuilder file
+  end
+
   private
 
   def location_params
