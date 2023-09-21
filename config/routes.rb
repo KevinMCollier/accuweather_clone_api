@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :locations, only: %i[index show update create destroy] do
         collection do
           get :search
+          get :forecast
         end
       end
     end
