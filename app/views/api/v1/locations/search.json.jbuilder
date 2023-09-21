@@ -1,6 +1,7 @@
 # json.extract! @location, :name, :latitude, :longitude
 
 json.city_name params[:query]
+json.timezone @weather_data['timezone']
 
 json.set! :weather do
   json.temperature @weather_data['main']['temp'].round
