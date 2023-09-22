@@ -54,6 +54,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
     @searched_name = params[:query]
     render json: @forecast_data
     # can replace the line above if creating a forecast.json.jbuilder file
+    puts @forecast_data
   end
 
   private
