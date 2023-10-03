@@ -2,6 +2,8 @@
 
 json.city_name params[:query]
 json.timezone @weather_data['timezone']
+json.sunrise @weather_data['sys']['sunrise']
+json.sunset @weather_data['sys']['sunset']
 
 json.set! :weather do
   json.temperature @weather_data['main']['temp'].round
