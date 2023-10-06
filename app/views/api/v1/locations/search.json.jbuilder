@@ -15,3 +15,9 @@ json.set! :weather do
   json.icon @weather_data['weather'][0]['icon']
   json.searched_name @searched_name
 end
+
+json.set! :haiku do
+  json.line_1 @haiku['line_1']
+  json.line_2 @haiku['line_2']
+  json.line_3 @haiku['line_3']
+end
