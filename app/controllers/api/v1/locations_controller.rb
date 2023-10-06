@@ -77,17 +77,30 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def build_prompt(weather_data, searched_name)
     weather_description = weather_data['weather'][0]['description']
+    temperature = weather_data['main']['temp']
+
+    current_time_utc = Time.now.getutc
+
+    timezone_offset = weather_data['timezone']
+    local_time = current_time_utc + timezone_offset
+
+    sunrise_time = Time.at(weather_data['sys']['sunrise']).getutc
+    sunset_time = Time.at(weather_data['sys']['sunset']).getutc
+    time_of_day = (sunrise_time..sunset_time).cover?(local_time) ? 'daytime' : 'nighttime'
+
     prompt = <<~PROMPT
-      I am seeking a haiku for my weather app.
+      Create a haiku for a weather app that is funny, engaging, and reflective of the current weather condition.
 
-      Provide a haiku where:
-      - The tone of the haiku matches the weather: (#{weather_description}).
-      - The haiku references the location: (#{searched_name}).
+      Weather Condition: #{weather_description}
+      Temperature: #{temperature}
+      Time of Day: #{time_of_day}
+      Location: #{searched_name}
 
-      Specific guidelines:
-      1. The haiku must consist of three lines.
-      2. The first and third lines must have five syllables.
-      3. The second line must have seven syllables.
+      The haiku should:
+      - Reflect the tone and mood associated with the weather condition, temperature, and/or time of day.
+      - Mention or allude to the location (#{searched_name}).
+      - Follow the traditional 5-7-5 syllable format.
+
 
       Format the output as a JSON object with these attributes and this format. Weather_data and searched_name are already provided.
 
