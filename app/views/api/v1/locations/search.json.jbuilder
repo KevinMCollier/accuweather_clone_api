@@ -17,7 +17,10 @@ json.set! :weather do
 end
 
 json.set! :haiku do
-  json.line_1 @haiku['line_1']
-  json.line_2 @haiku['line_2']
-  json.line_3 @haiku['line_3']
+  json.line_1_jp @haiku['line_1_jp']
+  json.line_1_en @haiku['line_1_en']
+  json.line_2_jp @haiku['line_2_jp']
+  json.line_2_en @haiku['line_2_en']
+  json.line_3_jp @haiku['line_3_jp']
+  json.line_3_en @haiku['line_3_en']
 end
