@@ -77,23 +77,12 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def build_prompt(weather_data, searched_name)
     weather_description = weather_data['weather'][0]['description']
-    # temperature = weather_data['main']['temp']
-
-    current_time_utc = Time.now.getutc
-
-    timezone_offset = weather_data['timezone']
-    local_time = current_time_utc + timezone_offset
-
-    sunrise_time = Time.at(weather_data['sys']['sunrise']).getutc
-    sunset_time = Time.at(weather_data['sys']['sunset']).getutc
-    time_of_day = (sunrise_time..sunset_time).cover?(local_time) ? 'daytime' : 'nighttime'
 
     prompt = <<~PROMPT
       Create a haiku for a weather app that is engaging and reflective of the current weather.
 
       Requirements:
       - The haiku should reflect the tone and mood associated with the current weather: #{weather_description}
-      - The haiku should take time of day should also into consideration: #{time_of_day}
       - The haiku should mention or allude to the location: #{searched_name}.
       - The haiku should be written in Japanese.
       - The haiku should follow the traditional 5-7-5 syllable format.
