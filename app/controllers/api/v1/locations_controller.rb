@@ -77,7 +77,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   def build_prompt(weather_data, searched_name)
     weather_description = weather_data['weather'][0]['description']
-    temperature = weather_data['main']['temp']
+    # temperature = weather_data['main']['temp']
 
     current_time_utc = Time.now.getutc
 
@@ -89,29 +89,26 @@ class Api::V1::LocationsController < Api::V1::BaseController
     time_of_day = (sunrise_time..sunset_time).cover?(local_time) ? 'daytime' : 'nighttime'
 
     prompt = <<~PROMPT
-      Create a haiku for a weather app that is funny, engaging, and reflective of the current weather condition.
+      Create a haiku for a weather app that is engaging and reflective of the current weather.
 
-      Weather Condition: #{weather_description}
-      Temperature: #{temperature}
-      Time of Day: #{time_of_day}
-      Location: #{searched_name}
-
-      The haiku should:
-      - Reflect the tone and mood associated with the weather condition, temperature, and/or time of day.
-      - Mention or allude to the location (#{searched_name}).
-      - Follow the traditional 5-7-5 syllable format.
-      - The haiku should be written in both Japanese AND english
+      Requirements:
+      - The haiku should reflect the tone and mood associated with the current weather: #{weather_description}
+      - The haiku should take time of day should also into consideration: #{time_of_day}
+      - The haiku should mention or allude to the location: #{searched_name}.
+      - The haiku should be written in Japanese.
+      - The haiku should follow the traditional 5-7-5 syllable format.
+      - An English transaltion of the haiku should also be provided
 
 
-      Format the output as a JSON object with these attributes and this format. Weather_data and searched_name are already provided.
+      Format the output as a JSON object with these attributes and this format.
 
       "weather_data" : #{weather_description},
       "searched_name" : #{searched_name},
       "line_1_jp" : "line_1 in Japanese",
-      "line_1_en" : "line_1 in English",
       "line_2_jp" : "line_2 in Japanese",
-      "line_2_en" : "line_2 in English",
       "line_3_jp" : "line_3 in Japanese",
+      "line_1_en" : "line_1 in English",
+      "line_2_en" : "line_2 in English",
       "line_3_en" : "line_3 in English",
     PROMPT
     puts "Generated Prompt: #{prompt}"
